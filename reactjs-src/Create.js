@@ -41,6 +41,9 @@ export default function Create() {
         data: formData,
         headers: { "Content-Type": "multipart/form-data" , 'Authorization': 'Bearer ' + localStorage.getItem('access')},
       }).then(res => {
+        if(res.data.errors.length > 0){
+          // handle validation failure for create.
+        }
         if (res.data.message.includes('Login failed') || res.data.errors.includes('Client need to login to access this URL')) {
           navigate('/login');
         }
