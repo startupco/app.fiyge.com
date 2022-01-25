@@ -50,7 +50,7 @@ export default function SignIn() {
     formData.append("data[users][user_password]", data.get('password'));
     axios.post('https://abc.fiyge.com/access_controls/users/login.json', formData)
       .then(response => {
-        if (response.data.message.includes('login successfully')) {
+        if (response.data.errors.length == 0 && response.data.message.includes('login successfully')) {
           localStorage.setItem('access', response.data.access_token);
           localStorage.setItem('refresh', response.data.refresh_token);
           localStorage.setItem('flash', 'Logged in');
