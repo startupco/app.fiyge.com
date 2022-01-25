@@ -56,7 +56,7 @@ export default function SignUp() {
 
     axios.post('https://abc.fiyge.com/access_controls/users/signup.json', formData)
       .then(response => {
-        if (response.data.message[0][0] !== 'u') {
+        if (response.data.errors.length == 0) {
           localStorage.setItem('flash', 'Account created');
           navigate('/login');
         }
